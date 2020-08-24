@@ -1,5 +1,5 @@
 {
-  "name": "bernardo",
+  "name": "bgui",
   "version": "1.0.0",
   "description": "A tool to verify an email address exits via SMTP",
   "main": "dist/index.js",
