@@ -110,7 +110,7 @@ export function smtpProbe(params: SmtpParams): Promise<Result> {
               result.success = true;
               result.code = infoCodes.FINISHED_VERIFICATION;
               result.info = `${email} is a valid email`;
-            } else if (/(blacklist|banned)/ig.test(response)) {
+            } else if (/(blacklist|banned|block list)/ig.test(response)) {
               result.code = infoCodes.BANNED_BY_SERVER;
               result.info = `${ErrorMessages.BANNED_BY_SERVER}: ${response}`;
             } else {
