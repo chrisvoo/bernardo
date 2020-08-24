@@ -1,4 +1,4 @@
-# SMTP Email Verification
+# BGUI
 
 This is a fork of [email-verify](https://github.com/EmailVerify/email-verify) and it has the following differences from the original project:
 
@@ -8,8 +8,8 @@ This is a fork of [email-verify](https://github.com/EmailVerify/email-verify) an
 
 ## Install
 
-* `npm install bernardo -g` if you just want to use the CLI.
-* `npm install bernardo` to use it in your app.
+* `npm install bgui -g` if you just want to use the CLI.
+* `npm install bgui` to use it in your app.
 
 ## Usage
 
@@ -65,3 +65,8 @@ verify('support@github.com').then((info) => {
   done();
 });
 ```
+
+## Why this name?
+
+It takes inspiration from [Bernard Gui](https://en.wikipedia.org/wiki/Bernard_Gui), an inquisitor. This service declares which emails must be
+condemned and set on fire.
