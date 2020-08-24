@@ -56,7 +56,7 @@ This module has tests with Jest. Run `npm test` and make sure you have a solid c
 Use (also see the app.js file):
 
 ```javascript
-import { verify } from 'bernardo';
+import { verify } from 'bgui';
 
 verify('support@github.com').then((info) => {
   expect(info.success).toBeTruthy();
@@ -64,6 +64,12 @@ verify('support@github.com').then((info) => {
   expect(info.lastResponse?.length !== undefined && info.lastResponse.length > 0).toBeTruthy();
   done();
 });
+```
+
+For CLI usage:
+
+```text
+bgui --help
 ```
 
 ## Why this name?

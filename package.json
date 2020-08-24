@@ -1,6 +1,6 @@
 {
   "name": "bgui",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A tool to verify an email address exits via SMTP",
   "main": "dist/index.js",
   "files": [
@@ -47,7 +47,7 @@
   },
   "preferGlobal": true,
   "bin": {
-    "bernardo": "./dist/app.js"
+    "bgui": "./dist/app.js"
   },
   "engines": {
     "node": "^10",
