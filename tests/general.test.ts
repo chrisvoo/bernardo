@@ -79,6 +79,7 @@ describe('bernardo', () => {
 
   it('bad smtp port: should respond with an object where success is false', (done) => {
     verify('admin@github.com', { timeout: 5000, port: 6464 }).then((info) => {
+      console.log(info);
       expect(info.success).toBeFalsy();
       expect(info.code).toBe(infoCodes.SMTP_CONNECTION_TIMEOUT);
       done();
