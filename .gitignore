@@ -20,3 +20,4 @@ pids
 # unit tests coverage directory
 .nyc_output/
 coverage/
+dist/

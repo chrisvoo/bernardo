@@ -1,43 +1,59 @@
 {
-  "name": "email-verify",
-  "version": "0.2.1",
+  "name": "bernardo",
+  "version": "1.0.0",
   "description": "A tool to verify an email address exits via SMTP",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "files": [
+    "/dist"
+  ],
+  "types": "",
   "dependencies": {
-    "bluebird": "^3.5.1",
-    "mocha": "^4.0.1",
-    "nyc": "^11.3.0",
-    "validator": "^9.1.1"
+    "@types/q": "^1.5.4",
+    "colors": "^1.4.0",
+    "commander": "^6.0.0",
+    "q": "^1.5.1",
+    "validator": "^9.1.1",
+    "winston": "^3.3.3"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@types/commander": "^2.12.2",
+    "@types/jest": "^26.0.9",
+    "@types/validator": "^13.1.0",
+    "@typescript-eslint/eslint-plugin": "^3.8.0",
+    "@typescript-eslint/parser": "^3.8.0",
+    "eslint": "^7.6.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.0",
+    "jest": "^26.2.2",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^26.1.4",
+    "typescript": "^3.9.7"
+  },
   "bugs": {
-    "url": "https://github.com/bighappyworld/email-verify/issues"
+    "url": "https://github.com/chrisvoo/bernardo/issues"
   },
   "scripts": {
-    "test": "nyc --reporter=lcov mocha ./test/*.test.js"
+    "clean": "rimraf dist/*",
+    "tsc": "tsc",
+    "build": "run-s clean tsc",
+    "watch": "tsc --watch",
+    "prepare": "npm run build",
+    "test": "jest --detectOpenHandles --runInBand"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/bighappyworld/email-verify"
+    "url": "https://github.com/chrisvoo/bernardo"
   },
   "preferGlobal": true,
   "bin": {
-    "email-verify": "./app.js"
+    "bernardo": "./dist/app.js"
   },
-  "author": "Robert Oaks <robert.w.oaks@gmail.com> (https://github.com/bighappyworld)",
-  "contributors": [
-    "Anatolij Ostroumov <ostroumov095@gmail.com> (https://github.com/vodolaz095)",
-    "robert-irribarren <robertirribarren@gmail.com> (https://github.com/robert-irribarren)",
-    "Kirill Beresnev <derainberk@gmail.com> (https://github.com/DeRain)",
-    "Santiago Castro <santi.1410@hotmail.com> (https://github.com/bryant1410)",
-    "Fones <ja@fones.pl> (https://github.com/fones)",
-    "Bramzor <bramverdonck@telenet.be> (https://github.com/Bramzor)",
-    "zh99998 <zh99998@gmail.com> (https://github.com/zh99998)",
-    "sancowinx <jm-sarn@hotmail.com> (https://github.com/sancowinx)",
-    "Martin Edwards <martin@brilliantnoise.com> (https://github.com/mledwards)",
-    "james075 <james.heng@epitech.eu> (https://github.com/james075)",
-    "Matti Savolainen <matti@applifier.com> (https://github.com/Nomon)"
-  ],
+  "engines": {
+    "node": "^10",
+    "tsc": "^3"
+  },
+  "author": "Christian Castelli <voodoo81people@gmail.com> (https://github.com/chrisvoo)",
   "license": "ISC",
   "keywords": [
     "email",
