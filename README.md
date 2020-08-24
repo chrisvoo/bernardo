@@ -17,13 +17,13 @@ This is a fork of [email-verify](https://github.com/EmailVerify/email-verify) an
 
 The callback is a function(err, info) that has an info object:
 
-```json
+```javascript
 {
-  success: boolean
-  info: string
-  addr: the address being verified
-  code: info code saying things on verification status
-  banner: how server advertize itself
+  "success": true // boolean
+  "info": "voodoo81people@hotmail.com is a valid email" // A description of the result
+  "addr": "voodoo81people@hotmail.com" // the address being verified
+  "code": 1, // info code saying things on verification status, see infoCodes enum
+  "lastResponse": "220 DB8EUR05FT061.mail.protection.outlook.com Microsoft ESMTP MAIL Service ready ...", // last SMTP response
 }
 ```
 
@@ -56,34 +56,12 @@ This module has tests with Jest. Run `npm test` and make sure you have a solid c
 Use (also see the app.js file):
 
 ```javascript
-const verifier = require('email-verify');
-const infoCodes = verifier.infoCodes;
+import { verify } from 'bernardo';
 
-verifier.verify( 'anemail@domain.com', ( err, info ) => {
-  if (err) console.log(err);
-  else {
-    console.log( "Success (T/F): " + info.success );
-    console.log( "Info: " + info.info );
-
-    //Info object returns a code which representing a state of validation:
-
-    //Connected to SMTP server and finished email verification
-    console.log(info.code === infoCodes.finishedVerification);
-
-    //Domain not found
-    console.log(info.code === infoCodes.domainNotFound);
-
-    //Email is not valid
-    console.log(info.code === infoCodes.invalidEmailStructure);
-
-    //No MX record in domain name
-    console.log(info.code === infoCodes.noMxRecords);
-
-    //SMTP connection timeout
-    console.log(info.code === infoCodes.SMTPConnectionTimeout);
-
-    //SMTP connection error
-    console.log(info.code === infoCodes.SMTPConnectionError)
-  }
+verify('support@github.com').then((info) => {
+  expect(info.success).toBeTruthy();
+  expect(info.code).toBe(infoCodes.FINISHED_VERIFICATION);
+  expect(info.lastResponse?.length !== undefined && info.lastResponse.length > 0).toBeTruthy();
+  done();
 });
 ```

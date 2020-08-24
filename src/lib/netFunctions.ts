@@ -28,7 +28,7 @@ export function smtpProbe(params: SmtpParams): Promise<Result> {
       info: '',
       addr: email,
       code: -1,
-      banner: '',
+      lastResponse: '',
     };
 
     let stage: number = 0;
@@ -61,13 +61,14 @@ export function smtpProbe(params: SmtpParams): Promise<Result> {
     socket.on('data', (data) => {
       response += data.toString();
       completed = response.slice(-1) === '\n';
+      result.lastResponse = response;
+
       if (completed) {
         logger.info(`Server: ${response}`);
         switch (stage) {
           case 0:
             if (response.indexOf('220') > -1 && !ended) {
               // Connection Worked
-              result.banner = response;
               const cmd = `EHLO ${fqdn}\r\n`;
               logger.info(`Client: ${cmd}`);
               socket.write(cmd, advanceToNextStage);

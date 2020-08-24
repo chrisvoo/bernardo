@@ -10,7 +10,7 @@ describe('bernardo', () => {
     verify('support@github.com').then((info) => {
       expect(info.success).toBeTruthy();
       expect(info.code).toBe(infoCodes.FINISHED_VERIFICATION);
-      expect(info.banner?.length !== undefined && info.banner.length > 0).toBeTruthy();
+      expect(info.lastResponse?.length !== undefined && info.lastResponse.length > 0).toBeTruthy();
       done();
     });
   });

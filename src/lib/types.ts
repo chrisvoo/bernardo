@@ -12,7 +12,7 @@ export type Result = {
   info: string
   addr: string
   code: number // see infoCodes inside configurations.ts
-  banner?: string
+  lastResponse?: string
 };
 
 export type SmtpParams = {
