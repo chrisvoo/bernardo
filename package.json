@@ -1,6 +1,6 @@
 {
   "name": "bgui",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A tool to verify an email address exits via SMTP",
   "main": "dist/index.js",
   "files": [

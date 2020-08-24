@@ -98,6 +98,9 @@ export function smtpProbe(params: SmtpParams): Promise<Result> {
               const cmd = `RCPT TO:<${params.email}>\r\n`;
               logger.info(`Client: ${cmd}`);
               socket.write(cmd, advanceToNextStage);
+            } else if (/(blacklist|banned|block list)/ig.test(response)) {
+              result.code = infoCodes.BANNED_BY_SERVER;
+              result.info = `${ErrorMessages.BANNED_BY_SERVER}: ${response}`;
             } else {
               socket.end();
 
@@ -110,9 +113,6 @@ export function smtpProbe(params: SmtpParams): Promise<Result> {
               result.success = true;
               result.code = infoCodes.FINISHED_VERIFICATION;
               result.info = `${email} is a valid email`;
-            } else if (/(blacklist|banned|block list)/ig.test(response)) {
-              result.code = infoCodes.BANNED_BY_SERVER;
-              result.info = `${ErrorMessages.BANNED_BY_SERVER}: ${response}`;
             } else {
               result.code = infoCodes.FINISHED_VERIFICATION;
               result.info = response;
