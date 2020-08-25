@@ -6,6 +6,7 @@ import { ErrorMessages, infoCodes } from './lib/enumz';
 import { dnsQuery } from './lib/netFunctions';
 
 export const VerifyCodes = infoCodes;
+export * from './lib/types';
 
 /**
  * It verifies the validity and the existence of an email.
