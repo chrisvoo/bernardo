@@ -109,13 +109,13 @@ export function smtpProbe(params: SmtpParams): Promise<Result> {
             }
             break;
           case 3:
+            result.code = infoCodes.FINISHED_VERIFICATION;
+
             if (response.indexOf('250') > -1 || (ignore && response.indexOf(ignore) > -1)) {
               result.success = true;
-              result.code = infoCodes.FINISHED_VERIFICATION;
               result.info = `${email} is a valid email`;
             } else {
-              result.code = infoCodes.FINISHED_VERIFICATION;
-              result.info = response;
+              result.info = `${email} is not a valid email`;
             }
 
             // stage++;
