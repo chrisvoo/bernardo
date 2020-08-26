@@ -17,5 +17,6 @@ export enum ErrorMessages {
   DOMAIN_NOT_FOUND = 'Domain not found',
   SMTP_UNAVAILABLE = 'Remote SMTP server wasn\'t available',
   NETWORK_ERROR = 'Connection error',
-  NETWORK_TIMEOUT = 'Connection timeout'
+  NETWORK_TIMEOUT = 'Connection timeout',
+  UNKNOWN_ERROR = 'We received a code different from 550/250'
 }

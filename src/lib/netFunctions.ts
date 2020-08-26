@@ -61,7 +61,11 @@ export function smtpProbe(params: SmtpParams): Promise<Result> {
     socket.on('data', (data) => {
       response += data.toString();
       completed = response.slice(-1) === '\n';
-      result.lastResponse = response;
+      // do not log the quit response, let's store the last response till stage 3,
+      // which includes the real check
+      if (stage !== 4) {
+        result.lastResponse = response;
+      }
 
       if (completed) {
         logger.info(`Server: ${response}`);
@@ -114,8 +118,10 @@ export function smtpProbe(params: SmtpParams): Promise<Result> {
             if (response.indexOf('250') > -1 || (ignore && response.indexOf(ignore) > -1)) {
               result.success = true;
               result.info = `${email} is a valid email`;
-            } else {
+            } else if (response.indexOf('550') > -1) {
               result.info = `${email} is not a valid email`;
+            } else {
+              result.code = infoCodes.UNKNOWN_ERROR;
             }
 
             // stage++;
