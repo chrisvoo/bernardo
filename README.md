@@ -3,6 +3,7 @@
 This is a fork of [email-verify](https://github.com/EmailVerify/email-verify) and it has the following differences from the original project:
 
 * It's entirely written in TypeScript
+* It's Promise-based
 * It provides the response sent from the SMTP server in case of errors
 * It adds the `BANNED_BY_SERVER` error code, trying to parse the error message sent by the server.
 
@@ -13,9 +14,9 @@ This is a fork of [email-verify](https://github.com/EmailVerify/email-verify) an
 
 ## Usage
 
-### Callback
+### Result
 
-The callback is a function(err, info) that has an info object:
+The result is an object like the following:
 
 ```javascript
 {
